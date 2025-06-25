@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-dmsans: 'DM Sans', sans-serif;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -8,8 +12,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /**--font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);  **/
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +24,64 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #0a0a0a;
+
+}
+
+.itaas {
+  min-height: 100vh;
+  background-image: linear-gradient(
+    180deg,
+    hsl(348deg 89% 22%) 0%,
+    hsl(348deg 90% 20%) 21%,
+    hsl(347deg 89% 18%) 39%,
+    hsl(348deg 90% 16%) 54%,
+    hsl(348deg 88% 14%) 66%,
+    hsl(348deg 89% 11%) 75%,
+    hsl(347deg 91% 9%) 82%,
+    hsl(348deg 88% 7%) 87%,
+    hsl(349deg 91% 5%) 92%,
+    hsl(348deg 83% 2%) 96%,
+    hsl(0deg 0% 0%) 100%
+  );
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  height: 250px;
+  overflow: hidden;
+  padding-top: 5em;
+}
+
+.hero-scroll {
+  white-space: nowrap;
+  margin: 0 2em;
+}
+
+.hero-scroll div {
+  display: flex;
+  gap: 2em;
+}
+
+.hero-scroll p {
+  font-size: 150px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0;
+  line-height: 10px;
+}
+
+.RightToLeft {
+  animation: RightToLeft 10s infinite linear;
+}
+
+@keyframes  RightToLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
