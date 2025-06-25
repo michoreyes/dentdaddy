@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import HeroCar from './../../../public/herocar.png'
+import HeroCar from '../../../public/herocar.png'
 
 const DesktopHero = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
-import Logo from "./../../../public/ddrlogo.png";
-import Image from './next/image';
+import Logo from "../../../public/ddrlogo.png";
+import Image from 'next/image';
 
 const Header = () => {
   return (
