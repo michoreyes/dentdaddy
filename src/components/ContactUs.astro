@@ -13,7 +13,6 @@ const details = [
   {label: "Get to know us more", desc: ""}
 ]
 
-const key = import.meta.env.PUBLIC_WEBFORMS_KEY;
 
 ---
 
@@ -21,7 +20,7 @@ const key = import.meta.env.PUBLIC_WEBFORMS_KEY;
   <div class="container">
     <h1 class="header">Contact</h1>
     <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
-      <input type="hidden" name="access_key" value={key} />
+      <input type="hidden" name="access_key" value="620e9974-54ea-4b78-ab93-632b7ab7fdfe" />
       <input type="hidden" name="subject" value="New Contact Form Submission - Dent Daddy" />
       <div class="success" id="success">
         <p>Message sent successfully!</p>
