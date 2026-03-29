@@ -1,0 +1,231 @@
+---
+import { LuUpload } from "react-icons/lu";
+import Input from "./ui/Input.astro";
+import RadioButton from "./ui/RadioButton.astro";
+import Button from "./ui/Button.astro";
+import { Image } from "astro:assets";
+import map from '../images/map.png'
+
+const details = [
+  {label: "Call Us", desc: "+123456789"},
+  {label: "Email Us", desc: "contact@dentdaddy.com"},
+  {label: "Our Location", desc: "Winnipeg, Canada"},
+  {label: "Get to know us more", desc: ""}
+]
+
+const key = import.meta.env.WEBFORMS_KEY;
+
+---
+
+<section>
+  <div class="container">
+    <h1 class="header">Contact</h1>
+    <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+      <input type="hidden" name="access_key" value={key} />
+      <input type="hidden" name="subject" value="New Contact Form Submission - Dent Daddy" />
+      <div class="success" id="success">
+        <p>Message sent successfully!</p>
+      </div>
+      <div class="form-container">
+        <div class="form-left">
+          <label class="label-header">Personal Details</label>
+          <div class="input-group">
+            <Input placeholder="Name" name="name" required />
+            <Input placeholder="Phone Number" name="Number" type="tel" required />
+            <div class="full-width">
+              <Input placeholder="Email" name="email" type="email" required />
+            </div>
+          </div>
+          <label class="label-header">Upload Image of Your Dent</label>
+          <label class="file-input" for="file-upload">
+            <input type="file" id="file-upload" name="attachment" hidden disabled>
+            <LuUpload className="ups" />
+            <p class="upload-text">Click to upload</p>
+          </label>
+        </div>
+        <div class="form-right">
+          <label for="name" class="label-header">Vehicle Details</label>
+          <div class="input-group">
+            <Input placeholder="Vehicle Make" name="vehicle_make" required />
+            <Input placeholder="Vehicle Model" name="vehicle_model" required />
+            <div class="full-width">
+              <Input placeholder="Vehicle Year" name="vehicle_year"/>
+              <Input placeholder="Description of dent in your vehicle" name="description" type="textarea"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-bottom">
+          <label class="label-header">Would you like On-site service request?</label>
+          <div class="radio-group">
+            <RadioButton name="onsite_service" value="yes" label="Yes" required />
+            <RadioButton name="onsite_service" value="no" label="No" />
+          </div>
+          <Button type="submit" variant="offBlack">Submit</Button>
+      </div>
+    </form>
+  </div>
+  <div class="map-container">
+    <Image src={map} alt="map" width={1920} height={680}/>
+  </div>
+</section>
+
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault()
+
+    const formData = new FormData(form)
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      form.reset();
+      const success = document.getElementById("success");
+      if(success) {
+        success.style.display = "block";
+        setTimeout(() => {
+          success.style.display = "none";
+        }, 3000)
+      }
+    } else {
+      alert("Something Went Wrong.")
+    }
+  })
+
+
+</script>
+
+<style>
+  .success {
+    display: none;
+    padding: 1rem;
+    background: var(--color-offBlack);
+    color: var(--color-offWhite);
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-family: var(--font-dm);
+  }
+
+  .container {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4rem 0;
+  }
+
+  .header{
+    color: var(--color-offBlack);
+    font-family: var(--font-dm);
+    font-size: var(--text-display);
+    margin-bottom: 3rem;
+    font-weight: 600;
+  }
+
+  .form-container {
+    display: flex;
+    gap: 3rem;
+    padding-top: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .full-width {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .form-left, .form-right {
+    flex: 1 1 300px;
+  }
+
+  .file-input {
+    width: 100%;
+    border: 1px solid #c2c2c2;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .upload-text {
+    font-family: var(--font-dm);
+    color: #828282;
+  }
+  .ups {
+    height: 30px;
+    width: 30px;
+    color: #828282;
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem;
+    gap: 5rem;
+  }
+
+  .form-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .input-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem 0;
+  }
+  .label-header {
+    font-family: var(--font-dm);
+    color: var(--color-offBlack);
+    font-size: var(--text-h4);
+    font-weight: 600;
+    display: block;
+  }
+
+  .map-container {
+    aspect-ratio: 16/5;
+    overflow: hidden;
+  }
+
+  .map-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width:1280px) {
+    .container{
+      padding: 5rem 2rem;
+    }
+    
+    .form-container {
+      padding: 1rem 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .map-container {
+      aspect-ratio: 4/3;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .input-group {
+      grid-template-columns: repeat(1, 2fr);
+    }
+  }
+</style>

@@ -1,0 +1,88 @@
+---
+export interface Props {  
+  type?: "text" | "email" | "textarea" | "tel" | "number" ;
+  placeholder?: string;
+  name: string;
+  id?: string;
+  required?: boolean;
+  disabled?: boolean;
+  rows?: number;
+  class?: string;
+  value?: string;
+}
+
+const {
+  type = "text",
+  placeholder,
+  name,
+  id = name,
+  required = false,
+  disabled = false,
+  rows = 4,
+  class: className,
+  value,
+} = Astro.props;
+---
+
+<div class:list={["field", className]}>
+  {type === "textarea" ? (
+    <textarea 
+      class="input"
+      {name}
+      {id}
+      {placeholder}
+      {required}
+      {disabled}
+      {rows}
+    >{value}</textarea>
+  ) : (
+    <input 
+      class="input"
+      {type}
+      {name}
+      {id}
+      {placeholder}
+      {required}
+      {disabled}
+      {value}
+    />
+  )}
+</div>
+
+<style>
+  .input {
+    width: 100%;
+    padding: .65rem 1rem;
+    font-family: var(--font-dm);
+    font-size: .9375rem;
+    font-weight: 400;
+    color: var(--color-offBlack);
+    background: transparent;
+    border: 1px solid #c2c2c2;
+    outline: none;
+    transition: border-color 0.2s ease;
+    resize: none;
+    box-sizing: border-box;
+  }
+  
+  input[type="file"].input{
+    padding: .5rem;
+    cursor: pointer;
+  }
+
+
+  .input::placeholder {
+    color: #828282;
+  }
+
+  .input:focus {
+    border-color: var(--color-offBlack);
+  }
+
+  textarea.input {
+    min-height: 160px;
+    line-height: 1.6;
+  }
+
+
+</style>

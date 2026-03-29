@@ -1,0 +1,98 @@
+---
+const perks = [
+  {title: "MPI Friendly", desc: "Hail Damage is covered by your insurance"},
+  {title: "Preserves Original Paint", desc: "Retains your vehicle's factory finish"},
+  {title: "Complete Restoration", desc: "Remove all hail damage, restoring to a smooth and flawless finish"},
+  {title: "Preserves Resale Value", desc: "Maintains structural integrity and market value."},
+  {title: "Free Courtesy Vehicle", desc: "As your vehicle becomes dent-free, you can still live your day-to-day life with your courtesy car!"},
+  
+]
+---
+
+<section class="container">
+  <h2 class="header">Key Benefits of Hail Damage Repair</h2>
+  <p class="sub-header">Conveniently located within 30 seconds of an MPI hail estimating facility, we make the process even easier for you. From start to finish, Dent Dynasty ensures a stress-free experience with organized communication, complimentary courtesy cars and seamless repairs.
+    Don't let hail damage linger; let our professionals bring your vehicle back to life with unparalleled quality and care.</p>
+  <div class="grid">
+    {perks.map((perk) => (
+    <div class="grid-item">
+      <h3 class="grid-header">{perk.title}</h3>
+      <p class="grid-subheader">{perk.desc}</p>
+    </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .container {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5rem 0;
+  }
+  
+  .header {
+    font-size: var(--text-h3);
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    padding: 1rem 0;
+  }
+
+  .sub-header {
+    color: var(--color-offWhite);
+    font-family: var(--font-dm);
+    font-size: var(--text-base);
+    line-height: 1.3;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 50rem;
+    margin: 0 auto;
+    width: 100%;
+    padding: 3rem 0;
+  }
+
+  .grid-item {
+    width: 100%;
+    min-width: 0;
+    height: 200px;
+    border-radius: .5rem;
+    background-color: var(--color-offBlack);
+    padding: 2rem;
+  }
+
+  .grid-header {
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  .grid-subheader {
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  @media (max-width:1280px) {
+    .container{
+      padding: 1rem 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .grid-item {
+      height: 220px;
+    }
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  
+</style>

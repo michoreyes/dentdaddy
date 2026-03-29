@@ -1,0 +1,87 @@
+---
+export interface Props {
+  name: string;
+  value: string;
+  label: string;
+  checked?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+}
+
+const {
+  name,
+  value,
+  label,
+  checked = false,
+  disabled = false,
+  required = false,
+} = Astro.props;
+---
+
+<label class="radio">
+  <input
+    type="radio"
+    {name}
+    {value}
+    {checked}
+    {disabled}
+    {required}
+    class="radio-input"
+  
+  />
+  <span class="radio-dot"></span>
+  <span class="radio-label">{label}</span>
+</label>
+
+<style>
+  .radio {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+  }
+
+  .radio-input {
+    display: none;
+  }
+
+  .radio-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #828282;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease;
+  }
+
+  .radio-dot::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-offBlack);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .radio-input:checked + .radio-dot {
+    border-color: var(--color-offBlack);
+  }
+
+  .radio-input:checked + .radio-dot::after {
+    opacity: 1;
+  }
+
+  .radio-label {
+    font-family: var(--font-dm);
+    font-size: 0.9375rem;
+    color: var(--color-offBlack);
+  }
+
+  .radio:hover .radio-dot {
+    border-color: var(--color-offBlack);
+  }
+</style>

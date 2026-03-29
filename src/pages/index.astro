@@ -1,0 +1,27 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Hero from '../components/Hero.astro'
+import CTA from "../components/CTA.astro"
+import Navbar from "../components/Navbar.tsx"
+import Samples from "../components/Samples.astro"
+import Steps from "../components/Steps.astro"
+import Proof from "../components/Proof.astro"
+import Form from "../components/Form.astro"
+import Footer from "../components/Footer.astro"
+
+---
+
+<Layout>
+	<Navbar client:load/>	
+	<Hero  />
+	<CTA />
+	<Samples/>
+	<Steps/>
+	<Proof />
+	<Form />
+	<Footer />
+</Layout>
+
+<style>
+
+</style>

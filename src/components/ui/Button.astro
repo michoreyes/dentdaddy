@@ -1,0 +1,85 @@
+---
+export interface Props {
+  variant?: "primary" | "transparent" | "offBlack" | "black";
+  size?: "sm" | "md" | "lg"
+  href?: string;
+  type?: "submit" | "button";
+  dataFilter ?: string;
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  size = "lg",
+  href,
+  class: className,
+  type = "button",
+  dataFilter,
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag {type} class:list={["btn", `btn--${variant}`, `btn--${size}`, className]} href={href} data-filter={dataFilter}>
+  <slot/>
+</Tag>
+
+<style>
+
+  .filter-btn.active {
+    background-color: var(--color-offWhite);
+    color: var(--color-offBlack);
+  }
+
+
+  .btn {
+    padding: .4rem 1.75rem;
+    font-size: clamp(0.8125rem, 0.75rem + 0.3vw, 0.875rem);
+    font-family: var(--font-dm);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn--lg {
+    padding: .7rem 2rem;
+    font-size: var(--text-btn);
+    font-family: var(--font-dm);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn--sm {
+    padding: .3rem 1.2rem;
+    font-size: var(--text-btn);
+  }
+
+  .btn--primary {
+    background-color: var(--color-offWhite);
+    color: var(--color-offBlack);
+  }
+
+  .btn--transparent {
+    background-color: transparent;
+    border: 1px solid var(--color-offWhite);
+    color: var(--color-offWhite);
+  }
+
+  .btn--transparent:hover{
+    background-color: var(--color-offWhite);
+    color: var(--color-offBlack);
+  }
+
+  .btn--black {
+    background-color: black;
+    color: var(--color-offWhite);
+  }
+
+  .btn--offBlack {
+    background-color: var(--color-offBlack);
+    color: var(--color-offWhite);
+  }
+</style>

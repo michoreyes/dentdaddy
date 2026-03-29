@@ -1,0 +1,30 @@
+---
+import '../styles/global.css'
+import { Font } from 'astro:assets';
+
+export interface Props {
+  theme?: "light" | "dark" | "gradient";
+}
+
+const { theme = "gradient" } = Astro.props; 
+
+---
+
+<html lang="en" data-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <Font cssVariable='--font-dm' />
+    <title>Dent Daddy Repair</title>
+  </head>
+  <body>
+    <slot/>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    background: var(--color-bg);
+  }
+</style>

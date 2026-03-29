@@ -1,0 +1,72 @@
+:root {
+  --color-offWhite: #efefef;
+  --color-offBlack: #1f1f1f; 
+  --color-bg: linear-gradient(180deg, #6C061B 0%, #000 10%);
+
+
+  --text-display: clamp(3rem, 6vw + 1rem, 5rem);
+
+  /* Headings */
+  --text-h1: clamp(2.5rem, 4.5vw, 4.7rem); /* Hero Header */
+  --text-h2: clamp(2rem, 3.5vw + 0.5rem, 3rem);
+  --text-h3: clamp(1.75rem, 3vw + 0.25rem, 2.5rem);
+  --text-h4: clamp(1.125rem, 1.5vw + 0.25rem, 1.375rem);
+   /* body */
+  --text-lg: clamp(1rem, 1.5vw, 1.25rem);
+  --text-base: clamp(0.9rem, 2.8vw, 1.35rem);
+  --text-sm: clamp(0.8125rem, 0.75rem + 0.3vw, 0.875rem);
+  --text-xs: clamp(0.6875rem, 0.65rem + 0.2vw, 0.75rem);
+
+  --text-btn: clamp(0.75rem, 1.2vw, 0.9375rem);
+}
+
+[data-theme="light"] {
+  --color-bg: white;
+}
+
+[data-theme="dark"] {
+  --color-bg: black;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+*:not(dialog) {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+#root, #__next {
+  isolation: isolate;
+}

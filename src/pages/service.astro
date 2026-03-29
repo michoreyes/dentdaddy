@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Navbar from "../components/Navbar.tsx"
+import Footer from "../components/Footer.astro"
+import ServiceHero from "../components/ServiceHero.astro"
+import Hail from "../components/Hail.astro"
+---
+
+<Layout theme="dark">
+  <div class="bg">  
+    <Navbar client:idle/>
+    <ServiceHero />
+  </div>
+  <Hail />
+  <Footer />
+</Layout>
+
+<style>
+  .bg {
+    background-image: url("../images/photo-9.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    
+  }
+  .bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+
+  .bg > * {
+    position: relative;
+    z-index: 50;
+  }
+</style>

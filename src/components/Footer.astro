@@ -1,0 +1,173 @@
+---
+import { Image } from "astro:assets"
+import logo from "../images/dlogo.png"
+
+const pages = [
+  {label: "Home", href:"/"},
+  {label: "About Us", href:"/about"},
+  {label: "Gallery", href:"/gallery"},
+  {label: "Contact Us", href:"/contact"},
+]
+
+const services = [
+  {label: "Hail", href:"/"},
+  {label: "Door ding", href:"/"},
+  {label: "Crease", href:"/"},
+  {label: "Bumper", href:"/"},
+]
+
+const socials = [
+  {label: "Instagram", href:"/"},
+  {label: "Tiktok", href:"/"},
+  {label: "Twitter", href:"/"},
+]
+---
+
+<footer style="background: var(--color-offBlack)">
+  <div class="container">
+    <div class="logo-container">
+      <Image src={logo} alt="logo" class="logo" />
+    </div>
+    <div class="link-container">
+      <div class="pages">
+        <h3 class="foot-header">Pages</h3>
+        <ul class="foot-ul">
+          {pages.map((page) => (
+            <li><a href={page.href}>{page.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="pages">
+        <h1 class="foot-header">Service</h1>
+        <ul class="foot-ul">
+          {services.map((service) => (
+            <li><a href={service.href}>{service.label}</a></li>
+          ))}
+      </div>
+      <div class="pages">
+        <h1 class="foot-header">Links</h1>
+        <ul class="foot-ul">
+          {socials.map((social) => (
+            <li><a href={social.href}>{social.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="rights">
+    <p class="footer-text">© 2025 Dent Daddy Repair. All Rights Reserved. Developed by micco</p>
+  </div>
+</footer>
+
+<style>
+  .container {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+  .logo {
+    height: 60px;
+    width: auto;
+  }
+
+  .rights {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 1px solid #3d3d3d;
+  }
+
+  .footer-text {
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-size: var(--text-sm);
+    font-weight: 400;
+    opacity: .5;
+    padding: 1rem 0;
+  }
+
+  .logo-container {
+    flex: 1 1 200px;
+    display: flex;
+    justify-content: start;
+    
+  }
+  .foot-header {
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    padding-bottom: 0;
+    margin-bottom: 1rem;
+  }
+
+  .link-container {
+    display: flex;
+    flex: 1 1 600px;
+    justify-content: space-around;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .foot-ul{
+    list-style: none;
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-size: var(--text-md);
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 0;
+  }
+
+  .foot-ul a {
+    text-decoration: none;
+    color: var(--color-offWhite);
+  }
+
+  .foot-ul a:hover {
+    opacity: .2;
+  }
+
+   @media (max-width:1280px) {
+    .container{
+      padding: 5rem 2rem;
+    }
+
+    .rights {
+      padding: 0 2rem;
+    }
+    .logo-container {
+      flex: 1 1 200px;
+      display: flex;
+      justify-content: center;   
+    }
+  }
+
+  @media (max-width: 768px) {
+    .rights {
+      padding: 0 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .link-container {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .logo-container {
+      flex: 1 1 200px;
+      display: flex;
+      justify-content: start;   
+    }
+
+  }
+</style>

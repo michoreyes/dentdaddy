@@ -1,0 +1,117 @@
+---
+const steps = [
+  {
+    title: "Contact & diagnose",
+    desc: "In-person visit or online form to describe the damage",
+  },
+  {
+    title: "Repair",
+    desc: "Drop-off, mobile service, or scheduled repair",
+  },
+  {
+    title: "Return",
+    desc: "Repaired vehicle is returned or picked up",
+  },
+];
+---
+
+<section class="container">
+  <p class="steps-label">Our Simple 3-step Repair Process</p>
+
+  <div class="steps">
+    {steps.map((step, i) => (
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">{i + 1}</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-content">
+          <p class="step-title">{step.title}</p>
+          <p class="step-desc">{step.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .container {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .steps-label {
+    font-family: var(--font-dm);
+    font-size: 1rem;
+    color: var(--color-offBlack);
+    margin-bottom: 2rem;
+    font-weight: 700;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .step-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: stretch;
+
+  }
+
+  .step-num {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-dm);
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  .step-line {
+    width: 1px;
+    flex: 1;
+    min-height: 100px;
+    background: black;
+  }
+
+  .step:last-child .step-line {
+    display: none;
+  }
+
+  .step-content {
+    padding-bottom: 3.5rem;
+  }
+
+  .step-title {
+    font-family: var(--font-dm);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: black;
+    margin: 0 0 4px;
+    line-height: 1.2;
+  }
+
+  .step-desc {
+    font-family: var(--font-dm);
+    font-size: 1rem;
+    color: black;
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>

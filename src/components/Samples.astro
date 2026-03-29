@@ -1,0 +1,180 @@
+---
+import Button from "./ui/Button.astro"
+import photo1 from "../images/photo-1.jpg"
+import photo2 from "../images/photo-2.jpg"
+import photo3 from "../images/photo-3.jpg"
+import photo4 from "../images/photo-4.jpg"
+import photo5 from "../images/photo-5.jpg"
+import photo6 from "../images/photo-6.jpg"
+import photo7 from "../images/photo-7.jpg"
+import photo8 from "../images/photo-8.jpg"
+
+import { Image } from "astro:assets"
+
+const photos = [
+  { src: photo1, alt: "car gallery", category: "hail" },
+  { src: photo2, alt: "car gallery", category: "door-ding" },
+  { src: photo3, alt: "car gallery", category: "crease" },
+  { src: photo4, alt: "car gallery", category: "hail" },
+  { src: photo5, alt: "car gallery", category: "crease" },
+  { src: photo6, alt: "car gallery", category: "crease" },
+  { src: photo7, alt: "car gallery", category: "hail" },
+  { src: photo8, alt: "car gallery", category: "bumper" },
+];
+---
+
+<section class="container">
+  <div>
+    <h1 class="gallery-header">Our Work Speaks for Itself</h1>
+    <div class="btn-group">
+      <Button size="sm" variant="offBlack"dataFilter="all" class="filter-btn active">Show All</Button>
+      <Button size="sm" variant="offBlack" dataFilter="door-ding" class="filter-btn">Door ding</Button>
+      <Button size="sm" variant="offBlack" dataFilter="crease" class="filter-btn">Crease</Button>
+      <Button size="sm" variant="offBlack" dataFilter="bumper" class="filter-btn">Bumper</Button>
+      <Button size="sm" variant="offBlack" dataFilter="hail" class="filter-btn">Hail</Button>
+      <Button size="sm" variant="transparent" dataFilter="all" class="filter-btn reset-btn">Reset</Button>
+    </div>
+  </div>
+
+  <div class="gallery" id="gallery">
+    {photos.map(photo => (
+      <div class="gallery-item" data-category={photo.category}>
+        <Image src={photo.src} alt={photo.alt} />
+      </div>
+    ))}
+  </div>
+
+  <div class="explore">
+    <Button href="/gallery" variant="transparent">Explore Gallery</Button>
+  </div>
+</section>
+
+
+<script>
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const galleryItems = document.querySelectorAll(".gallery-item");
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.getAttribute("data-filter");
+      const isReset = btn.classList.contains("reset-btn")
+
+      filterBtns.forEach((b) => b.classList.remove("active"))
+
+      if (isReset) {
+        document.querySelector("[data-filter='all']:not(.reset-btn)")?.classList.add("active")
+      } else {
+        btn.classList.add("active")
+      }
+
+
+      galleryItems.forEach((item) => {
+        const category = item.getAttribute("data-category")
+        if (filter === "all" || category === filter) {
+          (item as HTMLElement).style.display = "block"
+        } else {
+          (item as HTMLElement).style.display = "none"
+        }
+      })
+    })
+  })
+</script>
+
+
+<style>
+
+  .container {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 7rem 0;
+  }
+
+  .gallery-header{
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-size: var(--text-h2);
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gallery-item {
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: 3/4;
+    height: auto;
+    overflow: hidden;
+    border-radius: .5rem;
+  }
+
+  .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+
+  .explore {
+    display: flex;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+  
+  @media (max-width:1280px) {
+    .container{
+      padding: 8rem 2rem;
+    }
+  }
+
+  @media (max-width:768px) {
+    .gallery{
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-item {
+      height: auto;
+    }
+  }
+
+  @media (max-width:480px) {
+    .gallery {
+      grid-template-columns: repeat(2, 1fr);
+      gap: .5rem;
+      padding: 1rem 0;
+    }
+    .gallery-item {
+      height: auto; 
+    }
+
+    .btn-group {
+      padding: 1rem 0;
+      gap: 6px;
+    }
+    .explore {
+      padding: 1.5rem 0;
+    }
+  }
+
+  /**@media (max-width: 360px) {
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+  } **/
+  
+</style>

@@ -1,0 +1,142 @@
+---
+import { Image } from "astro:assets";
+import proof1 from "../images/proof-1.jpg"
+import proof2 from "../images/proof-2.jpg"
+import proof3 from "../images/proof-3.jpg"
+import proof4 from "../images/proof-4.jpg"
+
+
+const cards = [
+  { src: proof1, text: "Paintless repair that preserves your factory finish — no fillers or repainting needed." },
+  { src: proof2, text: "Faster & more affordable than traditional body shop repairs." },
+  { src: proof3, text: "Certified expertise in auto body repair and damage estimating." },
+  { src: proof4, text: "Trusted locally — mobile service, free estimates, and recommended by collision center." },
+];
+---
+
+<section class="container">
+  <h1 class="proof-header">Why Dent Daddy?</h1>
+  <div class="grid">
+    {cards.map((card) => (
+      <div class="card">
+        <div class="card-image">
+          <Image src={card.src} alt="proof" width={415} height={704} />
+          <div class="overlay"></div>
+          <p class="card-text">{card.text}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .container {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8rem 0;
+  }
+
+  .proof-header{
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-size: var(--text-h2);
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #3d3d3d;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+
+  .card-image {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card-text {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    z-index: 2;
+    font-family: var(--font-dm);
+    font-size: clamp(0.75rem, 1.5vw, 1.2rem);
+    font-weight: 300;
+    color: var(--color-offWhite);
+    margin: 0;
+  }
+
+
+  @media (max-width:1280px) {
+    .container{
+      padding: 5rem 2rem;
+    }
+
+    .card-text {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width:768px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: .5rem;
+    }
+
+    .card-text {
+      padding: 1.5rem;
+      font-size: clamp(0.875rem, 2.5vw, 1.2rem);
+    }
+
+    .card-image {
+      aspect-ratio: 1/1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
+      gap: .5rem;
+    }
+
+    .card-text {
+      padding: 1.6rem;
+      font-size: clamp(1rem, 5.5vw, 1.4rem);
+    }
+    .card-image {
+      aspect-ratio: 1/1;
+    }
+  }
+
+
+
+</style>

@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Navbar from "../components/Navbar.tsx"
+import Footer from "../components/Footer.astro"
+import AboutUs from "../components/AboutUs.astro"
+---
+
+<Layout theme="dark">
+  <Navbar client:idle/>
+  <AboutUs/>
+  <Footer />
+</Layout>

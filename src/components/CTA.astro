@@ -1,0 +1,65 @@
+---
+import Button from "./ui/Button.astro"
+---
+
+<section class="container">
+  <div class="text-container">
+    <h2 class="cta-text">Serving Winnipeg, Manitoba, <br> and neighboring areas with fast, flawless repairs.</h2>
+  </div>
+
+  <div class="btn-container">
+    <Button href="/contact" >Get a Quote</Button>
+    <Button href="/gallery" variant="transparent">See Our Work</Button>
+  </div>
+</section>
+
+
+<style>
+  .container {
+    width: 100%;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-top: 1px solid color-mix(in srgb, var(--color-offWhite) 30%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-offWhite) 30%, transparent);
+  }
+  .cta-text {
+    font-family: var(--font-dm);
+    font-size: var(--text-h4);
+    color: var(--color-offWhite);
+    font-weight: 400;
+  }
+  .btn-container {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+
+  .text-container {
+    flex: 1 1 300px;
+  }
+
+  @media (max-width:640px) {
+    .cta-text{
+      text-align: center;
+    }
+
+    .btn-container{
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  @media (max-width:1280px) {
+    .container{
+      padding: 2rem;
+    }
+  }
+</style>
+</section>

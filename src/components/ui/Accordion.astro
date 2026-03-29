@@ -1,0 +1,86 @@
+---
+import { GoPlus } from "react-icons/go";
+import { RxCross1 } from "react-icons/rx";
+
+const contents = [
+  {title: "Factory-Fresh Repairs", desc: "We restore panels to their original condition, carefully removing dents and damage while keeping the factory shape and finish intact, so your vehicle maintains its value, appearance, and overall quality for years to come."},
+  {title: "All Vehicle Types", desc: "We work on all vehicle types, from small cars to larger vehicles, handling each with care and the right approach to keep the original look, structure, and value intact."},
+  {title: "Mobile or In-Shop Service", desc: "You can choose between mobile or in-shop service—whether we come to you or you visit us, your vehicle gets the same professional care and precise repairs."},
+  {title: "Fast Turnaround", desc: "We deliver fast turnaround on every job, working efficiently without cutting corners so your vehicle is repaired quickly while still keeping quality, finish, and value intact."},
+  {title: "Customer Focused", desc: "Our focus is on the customer, ensuring a smooth, hassle-free experience and repairs that keep your vehicle looking and performing its best."},
+]
+---
+
+{contents.map((content) => (
+  <details class="accordion">
+  <summary class="accordion-header">
+    <span class="accordion-title">{content.title}</span>
+    <span class="accordion-icon">
+      <GoPlus className="icon-plus"/>
+      <RxCross1 className="icon-close"/>
+    </span>
+  </summary>
+  <p class="accordion-content">{content.desc}</p>
+</details>
+))}
+
+<style>
+  .accordion {
+    border-bottom: 1px solid #3d3d3d;
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1rem;
+    cursor: pointer;
+    list-style: none;
+
+  }
+
+  .accordion-title {
+    font-family: var(--font-dm);
+    color: var(--color-offWhite);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    font-weight: 500;
+  }
+
+  .accordion-header::-webkit-details-marker {
+    display: none;
+  }
+
+  .accordion-content {
+    font-family: var(--font-dm);
+    font-size: .9375rem;
+    color: var(--color-offWhite);
+    line-height: 1.6;
+    padding: 0 1rem 1.25rem 1rem;
+    margin: 0;
+  }
+
+  .icon-plus {
+    color: var(--color-offWhite);
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .icon-close {
+    display: none;
+    color: var(--color-offWhite);
+    height: 1.2rem;
+    width: 1.2rem;
+  }
+
+  details[open] .icon-plus {
+    display: none;
+  }
+
+  details[open].accordion {
+    background-color: var(--color-offBlack);
+  }
+
+  details[open] .icon-close {
+    display: block;
+  }
+</style>
