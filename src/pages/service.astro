@@ -8,6 +8,7 @@ import photo9 from "../images/photo-9.jpg"
 ---
 
 <Layout theme="dark">
+  <link rel="preload" as="image" href={photo9.src}>
   <div class="bg" style={`background-image: url(${photo9.src})`}>  
     <Navbar client:idle/>
     <ServiceHero />
@@ -22,6 +23,7 @@ import photo9 from "../images/photo-9.jpg"
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    background-attachment: fixed;
     
   }
   .bg::before {
