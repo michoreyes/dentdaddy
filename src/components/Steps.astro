@@ -50,6 +50,7 @@ import Instructions from "../components/ui/Instruct.astro"
           delay: scrollingDown ? stagger(0.15) : stagger(0.15, { from: "last" })
         }
       );
+      
 
       return () => {
         lastScroll = window.scrollY;

@@ -23,7 +23,7 @@ import { animate, inView } from "motion"
     inView("#herocar", () => {
       animate(
         "#herocar",
-        { opacity: [0, 1], transform: ["translateX(2rem)", "translateX(0)"] },
+        { opacity: [0, 1], transform: ["translateX(2rem)", "translateX(0)"]  },
         { duration: 1.2, easing: [0.16, 1, 0.3, 1] }
       )
 
@@ -32,8 +32,6 @@ import { animate, inView } from "motion"
       }
     })
   }
-
-
 </script>
 
 
@@ -74,13 +72,26 @@ import { animate, inView } from "motion"
     display: flex;
     justify-content: center;
     overflow: hidden;
-    
+    opacity: 0;
   }
 
   .image-container img {
     max-width: 100%;
     height: auto;
     
+  }
+
+  @media (min-width: 769px) {
+    .image-container {
+      transform: translateX(2rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .image-container {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 
   @media (max-width: 640px) {

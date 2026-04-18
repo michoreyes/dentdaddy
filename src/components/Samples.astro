@@ -32,7 +32,6 @@ const photos = [
       <Button size="sm" variant="offBlack" dataFilter="crease" class="filter-btn">Crease</Button>
       <Button size="sm" variant="offBlack" dataFilter="bumper" class="filter-btn">Bumper</Button>
       <Button size="sm" variant="offBlack" dataFilter="hail" class="filter-btn">Hail</Button>
-      <Button size="sm" variant="transparent" dataFilter="all" class="filter-btn reset-btn">Reset</Button>
     </div>
   </div>
 
@@ -51,22 +50,25 @@ const photos = [
 
 
 <script>
+  import { animate, hover } from "motion";
+
+  if (window.innerWidth > 768) {
+    hover(".gallery-item", (element) => {
+      animate(element, { scale: 1.05 }
+    )
+      return() => animate(element, { scale: 1 })
+    })
+  }
+
   const filterBtns = document.querySelectorAll(".filter-btn");
   const galleryItems = document.querySelectorAll(".gallery-item");
 
   filterBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const filter = btn.getAttribute("data-filter");
-      const isReset = btn.classList.contains("reset-btn")
 
       filterBtns.forEach((b) => b.classList.remove("active"))
-
-      if (isReset) {
-        document.querySelector("[data-filter='all']:not(.reset-btn)")?.classList.add("active")
-      } else {
-        btn.classList.add("active")
-      }
-
+      btn.classList.add("active")
 
       galleryItems.forEach((item) => {
         const category = item.getAttribute("data-category")
